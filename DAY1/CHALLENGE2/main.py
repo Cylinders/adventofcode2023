@@ -19,6 +19,10 @@ a = open(r"C:\Users\ogvru\Documents\GitHub\adventofcode2023\DAY1\CHALLENGE2\inpu
     8
     9
 """
+
+
+
+
 sum = []
 for line in a: 
     first = ""
