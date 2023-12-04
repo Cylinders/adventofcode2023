@@ -1,3 +1,4 @@
+import this
 a = open(r"C:\Users\ogvru\Documents\GitHub\adventofcode2023\DAY1\input.txt", "r")
 answers = []
 for line in a:

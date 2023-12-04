@@ -25,6 +25,7 @@ int main()
     {
         // BECAUSE FILE IS A POINTER TO AN EXISTING FILE IN NTFS; CAN BE NULL; 
         perror("Error opening file");
+        
         return 1; // Exit with an error code
     }
 
