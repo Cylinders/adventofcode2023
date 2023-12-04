@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <String>
+#include <string.h>
+
+// Day 2 Challenge 2 AdventOfCode 2023;
+// C is fun. 
+// Ruthvik Venkatesan - 12/4/23
+
+
+
 int main()
 {
     FILE *file;
-    char line[100]; // Adjust the size as needed
+    char line[175]; // Adjust the size as needed --> Realistically not needed. 
     int len = 0;
     int *lenp = &len;
+    int sumCorrect = 0; 
+    
 
     // Open the file for reading
     file = fopen("input.txt", "r");
@@ -14,6 +23,7 @@ int main()
     // Check if the file opened successfully
     if (file == NULL)
     {
+        // BECAUSE FILE IS A POINTER TO AN EXISTING FILE IN NTFS; CAN BE NULL; 
         perror("Error opening file");
         return 1; // Exit with an error code
     }
@@ -21,39 +31,47 @@ int main()
     // Read and print each line in the file
     while (fgets(line, sizeof(line), file) != NULL)
     {
-        int currentSum[3] = [ 0, 0, 0 ];
+        int currentSum[3] = {0, 0, 0};
         len = strlen(line);
-        char currentWord[3];
+        char currentNumber[3];
+        // 0: red; 1: green; 2: blue
+        char currentLetter; 
+        int semiLoc;
+        char currentChar; 
+        char *charp = &currentChar; 
+
         for (int i = 0; i < len; ++i)
         {
-            // This section will check if the thing is a integer or not.
-            char x = line[i];
-            char *xP = &x;
-            int y = x;
-            free(xP);
 
-            if (x <= 39 && x >= 30)
-            {
+            currentChar = line[i];
+            if (currentChar < 40 && currentChar >= 30) {
+                // This an int FR
+                if (line[i+1] == " ") {
+                    
+                    // this means the num ended; 
+                    switch (line[i+2]) {
+                        case 'r':
+                            currentSum[0] = currentSum[0] + currentChar - 30;
+                            break;   
+                        case 'g':
+                            currentSum[1] = currentSum[1] + currentChar - 30;
+                            break; 
+                        case 'b':
+                            currentSum[2] = currentSum[2] + currentChar - 30;
+                            break; 
+                    }
 
-                printf("This character represents an integer \n");
-                strcat(currentWord, x);
-            }
-            if (strcom(line[i + 1], ""))
-            {
-                switch (line[i + 2])
-                {
-                case 'r':
-                    ++currentSum[0];
-                    break;
-                case 'g':
-                    ++currentSum[1];
-                    break;
-                case 'b':
-                    ++currentSum[2];
-                    break;
+                    
+
                 }
             }
+
+
+            
         }
+
+        free(&currentNumber);
+        free(&currentLetter);
     }
 
     free(lenp);
